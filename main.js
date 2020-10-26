@@ -49,6 +49,8 @@ var mantras = [
 'I am the sky, the rest is weather.'
 ]
 
+window.onload = updateDisplay()
+
 recieveMessageButton.addEventListener('click', recieveMessage)
 
 deleteMessageButton.addEventListener('click', deleteMessage)
@@ -61,7 +63,7 @@ function getRandomIndex(arrayName) {
 
 function validateSelection() {
   if (!document.getElementById('affirmation').checked && !document.getElementById('mantra').checked) {
-    alert('Set your intention by selecting a type of message to recieve.')
+    alert('Set your intention by selecting a type of message.')
     return false
   }
   return true
@@ -82,7 +84,8 @@ function updateDisplay() {
   if (!currentDisplay.message) {
     messageDisplay.innerHTML = `<img class="logo" src=${currentDisplay.logosrc}>`
   } else {
-    messageDisplay.innerHTML = `<p>${currentDisplay.message}</p>`
+    messageDisplay.innerHTML = `<p class="message" contenteditable>${currentDisplay.message}</p>`
+    assignInputListener()
   }
 }
 
@@ -102,15 +105,15 @@ function deleteMessage() {
 }
 
 function submitInput() {
-  var customMessage = messageInput.value
+  var customMessage = messageDisplay.innerText
   validateSubmission()
   currentDisplay = new Display(customMessage)
   updateDisplay()
 }
 
 function assignInputListener() {
-  messageInput = document.querySelector('.message-input')
-  messageInput.addEventListener('keypress', function(pressed) {
+  message = document.querySelector('.message')
+  message.addEventListener('keypress', function(pressed) {
     if (pressed.key === 'Enter'){
       submitInput()
     }
@@ -119,15 +122,15 @@ function assignInputListener() {
 
 function displayInput() {
   if (validateSelection()) {
-    messageDisplay.innerHTML = `<input class="message-input" value=${currentDisplay.message}>`
+    messageDisplay.innerHTML = `<p class="message" contenteditable>Take a deep breath. Write your message here.</p>`
     assignInputListener()
   }
 }
 
 function validateSubmission() {
-  if (document.getElementById('affirmation').checked && !affirmations.includes(messageInput.value)) {
-    affirmations.push(messageInput.value)
-  } else if (!mantras.includes(messageInput.value)) {
-    mantras.push(messageInput.value)
+  if (document.getElementById('affirmation').checked && !affirmations.includes(messageDisplay.innerText)) {
+    affirmations.push(messageDisplay.innerText)
+  } else if (!mantras.includes(messageDisplay.innerText)) {
+    mantras.push(messageDisplay.innerText)
   }
 }
