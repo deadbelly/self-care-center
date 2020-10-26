@@ -11,17 +11,25 @@
     <section>
       <h4>Which type of message?</h4>
       <article class="message-select">
-        <input type="radio" name="message-type" id="affirmation">
-        <label for="affirmation">affirmation</label>
-        <input type="radio" name="message-type" id="mantra">
-        <label for="mantra">mantra</label>
+        <div class="radio-wrapper">
+          <div>
+            <input type="radio" name="message-type" id="affirmation">
+            <label for="affirmation">affirmation</label>
+          </div>
+          <div>
+            <input type="radio" name="message-type" id="mantra">
+            <label for="mantra">mantra</label>
+          </div>
+        </div>
         <br>
-        <button class="recieve">
-          <p>Recieve Message</p>
-        </button>
-        <button class="delete">
-          <p>Let This Message Go<p>
-        </button>
+        <div class="button-wrapper">
+          <button class="recieve">
+            <p>Recieve Message</p>
+          </button>
+          <button class="delete">
+            <p>Let This Message Go<p>
+          </button>
+      </div>
       </article>
     </section>
     <section>

@@ -41,7 +41,6 @@ button {
   border-radius: 8px;
   color: inherit;
   line-height: 1px;
-  margin-bottom: 5px;
   text-align: inherit;
 }
 
@@ -50,11 +49,11 @@ label {
   font-style: italic;
 }
 
-input {
-  margin-bottom: 15px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 15px;
+.radio-wrapper {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  top: 10px;
 }
 
 .message-display {
