@@ -75,12 +75,10 @@ label {
   padding: 30px;
 }
 
-.message-input {
+.message {
   text-align: center;
   font-family: inherit;
   font-size: 18px;
-  height: 115;
-  width: 695;
 }
 
 
