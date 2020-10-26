@@ -1,14 +1,17 @@
 class Display {
   constructor(message) {
-    this.message = message
+    this.message = message || ''
     this.logosrc = "assets/meditate.svg"
   }
 }
 
 var recieveMessageButton = document.querySelector('.recieve')
+
 var deleteMessageButton = document.querySelector('.delete')
 
 var messageDisplay = document.querySelector('.message-display')
+
+var messageInput
 
 var currentDisplay = new Display()
 
@@ -50,6 +53,8 @@ recieveMessageButton.addEventListener('click', recieveMessage)
 
 deleteMessageButton.addEventListener('click', deleteMessage)
 
+messageDisplay.addEventListener('dblclick', displayInput)
+
 function getRandomIndex(arrayName) {
   return Math.floor(Math.random() * arrayName.length)
 }
@@ -77,7 +82,7 @@ function updateDisplay() {
   if (!currentDisplay.message) {
     messageDisplay.innerHTML = `<img class="logo" src=${currentDisplay.logosrc}>`
   } else {
-    messageDisplay.innerHTML = `<p class="message">${currentDisplay.message}</p>`
+    messageDisplay.innerHTML = `<p>${currentDisplay.message}</p>`
   }
 }
 
@@ -94,4 +99,35 @@ function deleteMessage() {
     currentDisplay = new Display()
   }
   updateDisplay()
+}
+
+function submitInput() {
+  var customMessage = messageInput.value
+  validateSubmission()
+  currentDisplay = new Display(customMessage)
+  updateDisplay()
+}
+
+function assignInputListener() {
+  messageInput = document.querySelector('.message-input')
+  messageInput.addEventListener('keypress', function(pressed) {
+    if (pressed.key === 'Enter'){
+      submitInput()
+    }
+  })
+}
+
+function displayInput() {
+  if (validateSelection()) {
+    messageDisplay.innerHTML = `<input class="message-input" value=${currentDisplay.message}>`
+    assignInputListener()
+  }
+}
+
+function validateSubmission() {
+  if (document.getElementById('affirmation').checked && !affirmations.includes(messageInput.value)) {
+    affirmations.push(messageInput.value)
+  } else if (!mantras.includes(messageInput.value)) {
+    mantras.push(messageInput.value)
+  }
 }
