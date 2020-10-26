@@ -14,7 +14,7 @@ body {
 }
 
 header {
-  padding: 20px;
+  padding: 10px;
 }
 
 section {
@@ -58,11 +58,14 @@ label {
 
 .message-display {
   align-items: center;
+  bottom: 35px;
   display: flex;
   color: #000000;
+  font-size: 18px;
   justify-content: center;
   margin-top: 80px;
   height: 120px;
+  position: relative;
   width: 700px;
 }
 
